@@ -10,19 +10,19 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.connectToServer"
+		"onCommand:extension.compile"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.connectToServer",
-				"title": "Connect To Server"
+				"command": "extension.compile",
+				"title": "IMS: Compile IMS file"
 			}
 		],
 		"menus": {
 			"explorer/context": [{
-				"command": "extension.connectToServer"
+				"command": "extension.compile"
 			}]
 		}
 	},
