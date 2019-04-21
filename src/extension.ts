@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 
 import { compileFile } from './commands/compileFile';
+import { runFile } from './commands/runFile';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -15,7 +16,13 @@ export function activate(context: vscode.ExtensionContext) {
         (uri: vscode.Uri) => compileFile(uri)
     );
 
+    const run = vscode.commands.registerCommand(
+        "extension.run",
+        (uri: vscode.Uri) => runFile(uri)
+    );
+
     context.subscriptions.push(compile);
+    context.subscriptions.push(run);
 }
 
 // this method is called when your extension is deactivated

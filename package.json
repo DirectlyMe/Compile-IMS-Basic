@@ -10,19 +10,26 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.compile"
+		"onCommand:extension.compile",
+		"onCommand:extension.run"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "extension.compile",
-				"title": "IMS: Compile IMS file"
+				"title": "IMS: Compile"
+			},
+			{
+				"command": "extension.run",
+				"title": "IMS: Run"
 			}
 		],
 		"menus": {
 			"explorer/context": [{
 				"command": "extension.compile"
+			}, {
+				"command": "extension.run"
 			}]
 		}
 	},

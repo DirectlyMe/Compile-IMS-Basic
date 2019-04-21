@@ -7,3 +7,8 @@ type IConnection = {
     password?: string;
     root?: string;
 }
+
+type ISession = {
+    connect: () => any;
+    execCommand: (command: string, options: {}) => any;
+}
