@@ -6,7 +6,7 @@ const sshSession = new nodeSsh();
 // #region commands
 
 export async function compileFile(uri: vscode.Uri) {
-    if (!uri.authority || uri.scheme !== "ssh") return;
+    if (!uri.authority || uri.scheme !== "ssh" || !uri.fsPath) return;
     
     try {
         console.log(uri);
@@ -28,10 +28,17 @@ export async function compileFile(uri: vscode.Uri) {
                 password: connection.password
             });
         }
-    
-        const { stdout, stderr } = await session.execCommand("ls -ltr", {});
-        console.log(`STDOUT: ${stdout}`);
-        console.log(`STDERR: ${stderr}`);
+
+        const { stdout, stderr } = await session.execCommand(`mv ${uri.path} /u/sting/src/3`, {});
+        console.log(stdout);
+        console.log(stderr);
+
+        if (stderr === "") {
+            const file = uri.path.substring(uri.path.lastIndexOf("/")+1, uri.path.length);
+            const { stdout, stderr } = await session.execCommand(`. /etc/setdakcsenv; BASIC -C 3/${file}`, { cwd: "/u/sting"});
+            console.log(stdout);
+            console.log(stderr);
+        }
     } catch (error) {
         console.error(error);
     }
