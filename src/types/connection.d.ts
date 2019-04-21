@@ -5,4 +5,5 @@ type IConnection = {
     passphrase?: string;
     privateKeyPath?: string;
     password?: string;
+    root?: string;
 }
