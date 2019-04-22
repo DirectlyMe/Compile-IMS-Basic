@@ -9,7 +9,7 @@ type IConnection = {
     root?: string;
 }
 
-type ISession = {
+interface ISession {
     connect: () => any;
     execCommand: (command: string, options: {}) => any;
 }

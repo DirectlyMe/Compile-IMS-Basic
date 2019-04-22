@@ -11,7 +11,8 @@
 	],
 	"activationEvents": [
 		"onCommand:extension.compile",
-		"onCommand:extension.run"
+		"onCommand:extension.run",
+		"onCommand:extension.connect"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -23,6 +24,10 @@
 			{
 				"command": "extension.run",
 				"title": "IMS: Run"
+			},
+			{
+				"command": "extension.connect",
+				"title": "Open Terminal Connection"
 			}
 		],
 		"menus": {
@@ -32,6 +37,9 @@
 				},
 				{
 					"command": "extension.run"
+				},
+				{
+					"command": "extension.connect"
 				}
 			]
 		}
