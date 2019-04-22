@@ -9,10 +9,20 @@ import {
 export async function runFile(uri: vscode.Uri) {
   try {
     const connection = getConnectionConfig(uri.authority);
-    if (!connection) return;
+    if (!connection) {
+      vscode.window.showErrorMessage(
+        `Error loading connection for ${uri.authority}.`
+      );
+      return;
+    }
 
     const session = await establishConnection(connection);
-    if (!session) return;
+    if (!session) {
+      vscode.window.showErrorMessage(
+        `Error establishing connection for ${uri.authority}.`
+      );
+      return;
+    }
 
     // Check for a src folder in the file path selected
     const srcPos = uri.path.lastIndexOf("/src");
@@ -25,7 +35,7 @@ export async function runFile(uri: vscode.Uri) {
     rootDir = connection.root === undefined ? "" : connection.root;
 
     // File path
-    if (srcPos <= 0) {
+    if (srcPos === -1) {
       const secondLastIndex = uri.path
         .substring(0, uri.path.lastIndexOf("/"))
         .lastIndexOf("/");
@@ -60,12 +70,12 @@ export async function runFile(uri: vscode.Uri) {
     puttyString += `-m "${process.env.APPDATA}\\puttycommands.txt" `;
     puttyString += "-t";
 
-    console.log(puttyString);
+    //console.log(puttyString);
 
-    if (shell.exec(puttyString).code !== 0) {
-      shell.echo("Error launching putty");
-      shell.echo("Connection String: " + puttyString);
-    }
+    if (shell.exec(puttyString).code !== 0)
+      vscode.window.showInformationMessage(
+        "Error launching putty: " + puttyString
+      );
 
     // TODO ADD INTEGRATED TERMINAL WITH INPUT
   } catch (error) {
