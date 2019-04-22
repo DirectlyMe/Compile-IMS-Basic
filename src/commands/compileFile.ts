@@ -12,13 +12,17 @@ export async function compileFile(uri: vscode.Uri) {
   try {
     const connection = getConnectionConfig(uri.authority);
     if (!connection) {
-      console.log(`Error loading connection for ${uri.authority}.`);
+      vscode.window.showErrorMessage(
+        `Error loading connection for ${uri.authority}.`
+      );
       return;
     }
 
     const session = await establishConnection(connection);
     if (!session) {
-      console.log(`Error establishing connection for ${uri.authority}.`);
+      vscode.window.showErrorMessage(
+        `Error establishing connection for ${uri.authority}.`
+      );
       return;
     }
 
@@ -28,7 +32,9 @@ export async function compileFile(uri: vscode.Uri) {
     // Check for a src folder in the file path selected
     const srcPos = uri.path.lastIndexOf("/src");
     if (srcPos === -1) {
-      console.log("File is not in a src directory and cannot be compiled.");
+      vscode.window.showErrorMessage(
+        "File is not in a src directory and cannot be compiled."
+      );
       return;
     }
 
@@ -43,6 +49,11 @@ export async function compileFile(uri: vscode.Uri) {
       `. /etc/setdakcsenv; BASIC -C ${file}`,
       { cwd: `${workDir}` }
     );
+
+    if (stderr === "Loading constants")
+      vscode.window.showInformationMessage(`${file} Compiled Successfully`);
+    else vscode.window.showErrorMessage(`${file} Compile Failed: \n` + stderr);
+
     console.log(stdout);
     console.log(stderr);
   } catch (error) {
