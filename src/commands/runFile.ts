@@ -25,7 +25,7 @@ export async function runFile(uri: vscode.Uri) {
     rootDir = connection.root === undefined ? "" : connection.root;
 
     // File path
-    if (srcPos <= 0) {
+    if (srcPos === -1) {
       const secondLastIndex = uri.path
         .substring(0, uri.path.lastIndexOf("/"))
         .lastIndexOf("/");

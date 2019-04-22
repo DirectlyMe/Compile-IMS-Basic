@@ -27,7 +27,7 @@ export async function compileFile(uri: vscode.Uri) {
 
     // Check for a src folder in the file path selected
     const srcPos = uri.path.lastIndexOf("/src");
-    if (srcPos <= 0) {
+    if (srcPos === -1) {
       console.log("File is not in a src directory and cannot be compiled.");
       return;
     }
