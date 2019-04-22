@@ -35,13 +35,15 @@ export async function establishConnection(connection: IConnection): Promise<ISes
             session = await sshSession.connect({
                 host: connection.host,
                 username: connection.username,
-                privateKey: connection.privateKeyPath
+                privateKey: connection.privateKeyPath,
+                port: connection.port? connection.port: 22
             });
         } else {
             session = await sshSession.connect({
                 host: connection.host,
                 username: connection.username,
-                password: connection.password
+                password: connection.password,
+                port: connection.port? connection.port: 22
             });
         }
     
