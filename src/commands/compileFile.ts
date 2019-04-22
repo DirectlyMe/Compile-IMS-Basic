@@ -11,10 +11,16 @@ export async function compileFile(uri: vscode.Uri) {
 
   try {
     const connection = getConnectionConfig(uri.authority);
-    if (!connection) return;
+    if (!connection) {
+      console.log(`Error loading connection for ${uri.authority}.`);
+      return;
+    }
 
     const session = await establishConnection(connection);
-    if (!session) return;
+    if (!session) {
+      console.log(`Error establishing connection for ${uri.authority}.`);
+      return;
+    }
 
     // Check if there is a root directory
     const rootDir = connection.root === undefined ? "" : connection.root;
@@ -22,7 +28,7 @@ export async function compileFile(uri: vscode.Uri) {
     // Check for a src folder in the file path selected
     const srcPos = uri.path.lastIndexOf("/src");
     if (srcPos <= 0) {
-      console.log("File not in a src directory.");
+      console.log("File is not in a src directory and cannot be compiled.");
       return;
     }
 

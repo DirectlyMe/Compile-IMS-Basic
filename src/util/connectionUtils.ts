@@ -13,7 +13,7 @@ export function getConnectionConfig(connectionName: string): IConnection | undef
 
         if (connections) {
             const connection = connections.find(
-                connection => connection.name === connectionName
+                connection => connection.name.toLowerCase() === connectionName
             );
 
             if (connection) {

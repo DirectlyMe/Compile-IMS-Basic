@@ -60,7 +60,7 @@ export async function runFile(uri: vscode.Uri) {
     puttyString += `-m "${process.env.APPDATA}\\puttycommands.txt" `;
     puttyString += "-t";
 
-    console.log(puttyString);
+    //console.log(puttyString);
 
     if (shell.exec(puttyString).code !== 0) {
       shell.echo("Error launching putty");
