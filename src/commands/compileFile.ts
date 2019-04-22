@@ -1,53 +1,45 @@
 import * as vscode from "vscode";
 
-import { getConnectionConfig, establishConnection } from "../util/connectionUtils";
-
+import {
+  getConnectionConfig,
+  establishConnection
+} from "../util/connectionUtils";
 
 export async function compileFile(uri: vscode.Uri) {
-    // needs all three in order to proceed
-    if (!uri.authority || uri.scheme !== "ssh" || !uri.fsPath) return;
+  // needs all three in order to proceed
+  if (!uri.authority || uri.scheme !== "ssh" || !uri.fsPath) return;
 
-    // get just the file name
-    const file = uri.path.substring(
-        uri.path.lastIndexOf("/") + 1,
-        uri.path.length
-    );
+  try {
+    const connection = getConnectionConfig(uri.authority);
+    if (!connection) return;
 
-    // check if the file is in the root directory
-    const filePath =
-    "/" + file === uri.path 
-        ? "." + uri.path
-        : uri.path;
+    const session = await establishConnection(connection);
+    if (!session) return;
 
-    try {
-        const connection = getConnectionConfig(uri.authority);
-        if (!connection) return;
+    // Check if there is a root directory
+    const rootDir = connection.root === undefined ? "" : connection.root;
 
-        const session = await establishConnection(connection);
-        if (!session) return;
-
-
-        // check if we're already in /u/sting/src/3
-        if (uri.path !== `/u/sting/src/3/${file}`) {
-            const { stdout, stderr } = await session.execCommand(
-                `cp ${filePath} /u/sting/src/3`,
-                {}
-            );
-            console.log(stdout);
-            console.log(stderr);
-
-            // if stderr returned something our file copy failed
-            if (stderr !== "") return;
-        }
-
-        // bring in environment variables, cd into /u/sting and compile the script
-        const { stdout, stderr } = await session.execCommand(
-            `. /etc/setdakcsenv; BASIC -C 3/${file}`,
-            { cwd: "/u/sting" }
-        );
-        console.log(stdout);
-        console.log(stderr);
-    } catch (error) {
-        console.error(error);
+    // Check for a src folder in the file path selected
+    const srcPos = uri.path.lastIndexOf("/src");
+    if (srcPos <= 0) {
+      console.log("File not in a src directory.");
+      return;
     }
+
+    // Get the working directory for the compiler
+    const workDir = rootDir + uri.path.substring(0, srcPos);
+
+    // Get the file name
+    const file = uri.path.substring(srcPos + 5, uri.path.length);
+
+    // bring in environment variables, cd into working directory, compile program
+    const { stdout, stderr } = await session.execCommand(
+      `. /etc/setdakcsenv; BASIC -C ${file}`,
+      { cwd: `${workDir}` }
+    );
+    console.log(stdout);
+    console.log(stderr);
+  } catch (error) {
+    console.error(error);
+  }
 }
