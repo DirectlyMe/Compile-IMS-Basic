@@ -52,7 +52,14 @@ export async function compileFile(uri: vscode.Uri) {
 
     if (stderr === "Loading constants")
       vscode.window.showInformationMessage(`${file} Compiled Successfully`);
-    else vscode.window.showErrorMessage(`${file} Compile Failed: \n` + stderr);
+    else
+      vscode.window.showErrorMessage(
+        `${file} Compile Failed: \n` +
+          stderr.substring(
+            stderr.indexOf("Loading constants") + 18,
+            stderr.length
+          )
+      );
 
     console.log(stdout);
     console.log(stderr);
