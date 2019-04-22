@@ -5,6 +5,7 @@ type IConnection = {
     passphrase?: string;
     privateKeyPath?: string;
     password?: string;
+    port?: string;
     root?: string;
 }
 

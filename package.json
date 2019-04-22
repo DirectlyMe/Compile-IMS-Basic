@@ -26,11 +26,14 @@
 			}
 		],
 		"menus": {
-			"explorer/context": [{
-				"command": "extension.compile"
-			}, {
-				"command": "extension.run"
-			}]
+			"explorer/context": [
+				{
+					"command": "extension.compile"
+				},
+				{
+					"command": "extension.run"
+				}
+			]
 		}
 	},
 	"scripts": {
@@ -43,11 +46,13 @@
 	"devDependencies": {
 		"@types/mocha": "^2.2.42",
 		"@types/node": "^10.12.21",
+		"@types/shelljs": "^0.8.5",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
 		"vscode": "^1.1.28"
 	},
 	"dependencies": {
+		"fs": "0.0.1-security",
 		"node-ssh": "^6.0.0",
 		"shelljs": "^0.8.3"
 	}

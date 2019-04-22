@@ -1,29 +1,29 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\jackh\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/node-ssh
+  C:\Program Files\nodejs\node.exe C:\Users\johnm\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add --dev @types/fs
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\jackh\bin;C:\Users\jackh\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\jackh\bin;C:\Program Files\Microsoft MPI\Bin;C:\Program Files\ImageMagick-7.0.8-Q16;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Program Files (x86)\Business Objects\Common\3.5\bin\NOTES;C:\Program Files (x86)\Business Objects\Common\3.5\bin\NOTES\DATA;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\HEAT;C:\Program Files\PuTTY;C:\Program Files\nodejs;C:\Program Files\dotnet;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files (x86)\Shoreline Communications\ShoreWare Client;C:\Program Files (x86)\Shoreline Communications\ShoreWare Client\win64;C:\Users\jackh\AppData\Local\Microsoft\WindowsApps;C:\Users\jackh\AppData\Roaming\npm;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\DAKCS\Plugin Key Gen;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Users\jackh\.cargo\bin;C:\Users\jackh\AppData\Local\Continuum\anaconda3;C:\Users\jackh\AppData\Local\Continuum\anaconda3\Library\mingw-w64\bin;C:\Users\jackh\AppData\Local\Continuum\anaconda3\Library\usr\bin;C:\Users\jackh\AppData\Local\Continuum\anaconda3\Library\bin;C:\Users\jackh\AppData\Local\Continuum\anaconda3\Scripts;C:\Users\jackh\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\jackh\AppData\Local\Programs\Python\Python37-32;C:\Users\jackh\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\jackh\AppData\Roaming\npm;C:\Users\jackh\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\jackh\.dotnet\tools;C:\Users\jackh\AppData\Local\Microsoft\WindowsApps;C:\Users\jackh\AppData\Local\GitHubDesktop\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\johnm\bin;C:\Program Files\Microsoft MPI\Bin;C:\Program Files (x86)\Business Objects\Common\3.5\bin\NOTES;C:\Program Files (x86)\Business Objects\Common\3.5\bin\NOTES\DATA;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\PuTTY;C:\Program Files (x86)\HEAT;C:\Program Files\dotnet;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files (x86)\DAKCS\Plugin Key Gen;C:\Program Files\nodejs;C:\Users\johnm\AppData\Local\Microsoft\WindowsApps;C:\Users\johnm\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\johnm\AppData\Roaming\npm
 
 Yarn version: 
-  1.7.0
+  1.15.2
 
 Node version: 
-  10.3.0
+  10.15.3
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fnode-ssh: Not found
-      at Request.params.callback [as _callback] (C:\Users\jackh\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:65656:18)
-      at Request.self.callback (C:\Users\jackh\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:134675:22)
-      at Request.emit (events.js:182:13)
-      at Request.<anonymous> (C:\Users\jackh\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:135658:10)
-      at Request.emit (events.js:182:13)
-      at IncomingMessage.<anonymous> (C:\Users\jackh\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:135578:12)
-      at Object.onceWrapper (events.js:273:13)
-      at IncomingMessage.emit (events.js:187:15)
-      at endReadableNT (_stream_readable.js:1090:12)
+  Error: https://registry.yarnpkg.com/@types%2ffs: Not found
+      at Request.params.callback [as _callback] (C:\Users\johnm\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66058:18)
+      at Request.self.callback (C:\Users\johnm\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129541:22)
+      at Request.emit (events.js:189:13)
+      at Request.<anonymous> (C:\Users\johnm\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130513:10)
+      at Request.emit (events.js:189:13)
+      at IncomingMessage.<anonymous> (C:\Users\johnm\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130435:12)
+      at Object.onceWrapper (events.js:277:13)
+      at IncomingMessage.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1125:12)
       at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
@@ -39,16 +39,31 @@ npm manifest:
   		"Other"
   	],
   	"activationEvents": [
-  		"onCommand:extension.helloWorld"
+  		"onCommand:extension.compile",
+  		"onCommand:extension.run"
   	],
   	"main": "./out/extension.js",
   	"contributes": {
   		"commands": [
   			{
-  				"command": "extension.helloWorld",
-  				"title": "Hello World"
+  				"command": "extension.compile",
+  				"title": "IMS: Compile"
+  			},
+  			{
+  				"command": "extension.run",
+  				"title": "IMS: Run"
   			}
-  		]
+  		],
+  		"menus": {
+  			"explorer/context": [
+  				{
+  					"command": "extension.compile"
+  				},
+  				{
+  					"command": "extension.run"
+  				}
+  			]
+  		}
   	},
   	"scripts": {
   		"vscode:prepublish": "yarn run compile",
@@ -60,11 +75,13 @@ npm manifest:
   	"devDependencies": {
   		"@types/mocha": "^2.2.42",
   		"@types/node": "^10.12.21",
+  		"@types/shelljs": "^0.8.5",
   		"tslint": "^5.12.1",
   		"typescript": "^3.3.1",
   		"vscode": "^1.1.28"
   	},
   	"dependencies": {
+  		"fs": "0.0.1-security",
   		"node-ssh": "^6.0.0",
   		"shelljs": "^0.8.3"
   	}
@@ -92,13 +109,45 @@ Lockfile:
       esutils "^2.0.2"
       js-tokens "^4.0.0"
   
+  "@types/events@*":
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
+    integrity sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==
+  
+  "@types/glob@*":
+    version "7.1.1"
+    resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.1.tgz#aa59a1c6e3fbc421e07ccd31a944c30eba521575"
+    integrity sha512-1Bh06cbWJUHMC97acuD6UMG29nMt0Aqz1vF3guLfG+kHHJhy3AyohZFFxYk2f7Q1SQIrNwvncxAE0N/9s70F2w==
+    dependencies:
+      "@types/events" "*"
+      "@types/minimatch" "*"
+      "@types/node" "*"
+  
+  "@types/minimatch@*":
+    version "3.0.3"
+    resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
+    integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
+  
   "@types/mocha@^2.2.42":
     version "2.2.48"
     resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.48.tgz#3523b126a0b049482e1c3c11877460f76622ffab"
   
+  "@types/node@*":
+    version "11.13.6"
+    resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.6.tgz#37ec75690830acb0d74ce3c6c43caab787081e85"
+    integrity sha512-Xoo/EBzEe8HxTSwaZNLZjaW6M6tA/+GmD3/DZ6uo8qSaolE/9Oarko0oV1fVfrLqOz0tx0nXJB4rdD5c+vixLw==
+  
   "@types/node@^10.12.21":
     version "10.14.4"
     resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.4.tgz#1c586b991457cbb58fef51bc4e0cfcfa347714b5"
+  
+  "@types/shelljs@^0.8.5":
+    version "0.8.5"
+    resolved "https://registry.yarnpkg.com/@types/shelljs/-/shelljs-0.8.5.tgz#1e507b2f6d1f893269bd3e851ec24419ef9beeea"
+    integrity sha512-bZgjwIWu9gHCjirKJoOlLzGi5N0QgZ5t7EXEuoqyWCHTuSddURXo3FOBYDyRPNOWzZ6NbkLvZnVkn483Y/tvcQ==
+    dependencies:
+      "@types/glob" "*"
+      "@types/node" "*"
   
   agent-base@4, agent-base@^4.1.0:
     version "4.2.1"
@@ -316,6 +365,11 @@ Lockfile:
   fs.realpath@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
+  
+  fs@0.0.1-security:
+    version "0.0.1-security"
+    resolved "https://registry.yarnpkg.com/fs/-/fs-0.0.1-security.tgz#8a7bd37186b6dddf3813f23858b57ecaaf5e41d4"
+    integrity sha1-invTcYa23d84E/I4WLV+yq9eQdQ=
   
   getpass@^0.1.1:
     version "0.1.7"
