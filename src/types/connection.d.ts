@@ -9,6 +9,12 @@ type IConnection = {
     root?: string;
 }
 
+type IPathInformation = {
+    file: string;
+    workDir: string;
+    rootDir: string;
+}
+
 interface ISession {
     connect: () => any;
     execCommand: (command: string, options: {}) => any;

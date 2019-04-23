@@ -8,15 +8,18 @@ import * as shell from "shelljs";
 
 export async function openConnection(uri: vscode.Uri) {
     try {
+        // Get ssh connection information
         const connection = getConnectionConfig(uri.authority);
-        if (!connection) return;
-
-        const session = await establishConnection(connection);
-        if (!session) return;
+        if (!connection) {
+        vscode.window.showErrorMessage(
+            `Error loading connection for ${uri.authority}.`
+        );
+        return;
+        }
 
         // Build file of commands
         const commandFile = openSync(
-            process.env.APPDATA + "\\puttycommands.txt",
+            `${process.env.APPDATA}\\puttycommands.txt`,
             "w"
         );
         appendFileSync(commandFile, ". /etc/setdakcsenv \n");

@@ -1,62 +1,37 @@
 import * as vscode from "vscode";
 import * as shell from "shelljs";
 import { openSync, appendFileSync, closeSync } from "fs";
-import {
-  getConnectionConfig,
-  establishConnection
-} from "../util/connectionUtils";
+import { getConnectionConfig } from "../util/connectionUtils";
+import { getFilePathing } from "../util/fileUtils";
 
-export async function runFile(uri: vscode.Uri) {
+export async function runFile(uri: vscode.Uri) : Promise<boolean> {
   try {
+    // Get ssh connection information
     const connection = getConnectionConfig(uri.authority);
     if (!connection) {
       vscode.window.showErrorMessage(
         `Error loading connection for ${uri.authority}.`
       );
-      return;
+      return false;
     }
 
-    const session = await establishConnection(connection);
-    if (!session) {
+    // Load file path information
+    const filePathInformation = getFilePathing(connection, uri.path);
+    if (filePathInformation.file === "") {
       vscode.window.showErrorMessage(
-        `Error establishing connection for ${uri.authority}.`
+        `Error getting file information for path: ${uri.path}`
       );
-      return;
-    }
-
-    // Check for a src folder in the file path selected
-    const srcPos = uri.path.lastIndexOf("/src");
-
-    let file;
-    let workDir;
-    let rootDir;
-
-    // Check if there is a root directory
-    rootDir = connection.root === undefined ? "" : connection.root;
-
-    // File path
-    if (srcPos === -1) {
-      const secondLastIndex = uri.path
-        .substring(0, uri.path.lastIndexOf("/"))
-        .lastIndexOf("/");
-      workDir = rootDir + uri.path.substring(0, secondLastIndex);
-      file = uri.path.substring(secondLastIndex + 1, uri.path.length);
-    } else {
-      // Get the working directory for the compiler
-      workDir = rootDir + uri.path.substring(0, srcPos);
-
-      // Get the file name
-      file = uri.path.substring(srcPos + 5, uri.path.length);
+      return false;
     }
 
     // Build file of commands
     const commandFile = openSync(
-      process.env.APPDATA + "\\puttycommands.txt",
+      `${process.env.APPDATA}\\puttycommands.txt`,
       "w"
     );
     appendFileSync(commandFile, ". /etc/setdakcsenv" + "\n");
-    appendFileSync(commandFile, `cd ${workDir}` + "\n");
-    appendFileSync(commandFile, `RUN ${file}` + "\n");
+    appendFileSync(commandFile, `cd ${filePathInformation.workDir}` + "\n");
+    appendFileSync(commandFile, `RUN ${filePathInformation.file}` + "\n");
     appendFileSync(commandFile, "/bin/bash");
     closeSync(commandFile);
 
@@ -77,8 +52,11 @@ export async function runFile(uri: vscode.Uri) {
         "Error launching putty: " + puttyString
       );
 
+    return true;
+
     // TODO ADD INTEGRATED TERMINAL WITH INPUT
   } catch (error) {
     console.error(error);
+    return false;
   }
 }

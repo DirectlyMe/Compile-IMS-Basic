@@ -2,7 +2,7 @@
 	"name": "compile-ims-basic",
 	"displayName": "Compile IMS-Basic",
 	"description": "Compiles IMS-Basic code over SSH",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"publisher": "JJDakcs",
 	"engines": {
 		"vscode": "^1.33.0"
@@ -13,7 +13,8 @@
 	"activationEvents": [
 		"onCommand:extension.compile",
 		"onCommand:extension.run",
-		"onCommand:extension.connect"
+		"onCommand:extension.connect",
+		"onCommand:extension.compilerun"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -29,6 +30,10 @@
 			{
 				"command": "extension.connect",
 				"title": "Open Terminal Connection"
+			},
+			{
+				"command": "extension.compilerun",
+				"title": "IMS: Compile/Run"
 			}
 		],
 		"menus": {
@@ -41,6 +46,9 @@
 				},
 				{
 					"command": "extension.connect"
+				},
+				{
+					"command": "extension.compilerun"
 				}
 			]
 		}
