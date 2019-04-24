@@ -14,7 +14,8 @@
 		"onCommand:extension.compile",
 		"onCommand:extension.run",
 		"onCommand:extension.connect",
-		"onCommand:extension.compilerun"
+		"onCommand:extension.compilerun",
+		"onCommand:terminalTest.integratedTerminal"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -34,6 +35,10 @@
 			{
 				"command": "extension.compilerun",
 				"title": "IMS: Compile/Run"
+			},
+			{
+				"command": "terminalTest.integratedTerminal",
+				"title": "New Terminal"
 			}
 		],
 		"menus": {
@@ -49,6 +54,9 @@
 				},
 				{
 					"command": "extension.compilerun"
+				},
+				{
+					"command": "terminalTest.integratedTerminal"
 				}
 			]
 		}
