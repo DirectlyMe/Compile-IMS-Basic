@@ -4,7 +4,7 @@ import { openSync, appendFileSync, closeSync } from "fs";
 import { getConnectionConfig } from "../util/connectionUtils";
 import { getFilePathing } from "../util/fileUtils";
 
-export async function runFile(uri: vscode.Uri) : Promise<boolean> {
+export async function runFile(uri: vscode.Uri): Promise<boolean> {
   try {
     // Get ssh connection information
     const connection = getConnectionConfig(uri.authority);
@@ -37,7 +37,7 @@ export async function runFile(uri: vscode.Uri) : Promise<boolean> {
 
     // Build putty command string
     let puttyString = "putty.exe ";
-    if (connection.port) puttyString += `-p ${connection.port}`;
+    if (connection.port) puttyString += `-P ${connection.port}`;
     puttyString += `${connection.username}@${connection.host} `;
     if (connection.privateKeyPath)
       puttyString += `-i "${connection.privateKeyPath}" `;
@@ -45,12 +45,14 @@ export async function runFile(uri: vscode.Uri) : Promise<boolean> {
     puttyString += `-m "${process.env.APPDATA}\\puttycommands.txt" `;
     puttyString += "-t";
 
-    //console.log(puttyString);
+    vscode.window.showInformationMessage(
+      `Running ${filePathInformation.file} in a new putty window`
+    );
 
-    if (shell.exec(puttyString).code !== 0)
-      vscode.window.showInformationMessage(
-        "Error launching putty: " + puttyString
-      );
+    shell.exec(puttyString, code => {
+      if (code !== 0)
+        vscode.window.showErrorMessage("Error launching: " + puttyString);
+    });
 
     return true;
 
