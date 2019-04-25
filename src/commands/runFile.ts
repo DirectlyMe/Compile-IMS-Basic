@@ -7,6 +7,7 @@ import { getIntegratedTerminal } from "../util/integratedTerminal";
 import { TerminalType } from "../types/enums";
 import { getTerminalType, selectTerminal } from "../util/selectTerminal";
 
+
 export async function runFilePutty(uri: vscode.Uri): Promise<boolean> {
     try {
         // Get ssh connection information

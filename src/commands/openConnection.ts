@@ -33,7 +33,7 @@ export async function openConnectionPutty(uri: vscode.Uri) {
 
         // Build putty command string
         let puttyString = "putty.exe ";
-        if (connection.port) puttyString += `-p ${connection.port} `;
+        if (connection.port) puttyString += `-P ${connection.port} `;
         puttyString += `${connection.username}@${connection.host} `;
         if (connection.privateKeyPath)
             puttyString += `-i "${connection.privateKeyPath}" `;
@@ -66,6 +66,7 @@ export function openConnectionIntegrated(uri: vscode.Uri, terminalId: number) {
 
         // use _ for unused return variable
         const _ = getIntegratedTerminal(connection, terminalId);
+
     } catch (error) {
         vscode.window.showErrorMessage(error);
     }
