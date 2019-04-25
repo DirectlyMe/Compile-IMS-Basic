@@ -4,8 +4,10 @@ import { openSync, appendFileSync, closeSync } from "fs";
 import { getConnectionConfig } from "../util/connectionUtils";
 import { getFilePathing } from "../util/fileUtils";
 import { getIntegratedTerminal } from "../util/integratedTerminal";
+import { TerminalType } from "../types/enums";
+import { getTerminalType, selectTerminal } from "../util/selectTerminal";
 
-export async function runFile(uri: vscode.Uri): Promise<boolean> {
+export async function runFilePutty(uri: vscode.Uri): Promise<boolean> {
     try {
         // Get ssh connection information
         const connection = getConnectionConfig(uri.authority);
@@ -40,10 +42,13 @@ export async function runFile(uri: vscode.Uri): Promise<boolean> {
         puttyString += `-m "${process.env.APPDATA}\\puttycommands.txt" `;
         puttyString += "-t";
 
-        //console.log(puttyString);
-
-        if (shell.exec(puttyString).code !== 0)
-            vscode.window.showInformationMessage("Error launching putty: " + puttyString);
+        shell.exec(puttyString, (code) => {
+            if (code !== 0) {
+                vscode.window.showErrorMessage(
+                    "Error launching putty \n Connection String: " + puttyString
+                );
+            }
+        });
 
         return true;
     } catch (error) {
@@ -92,4 +97,27 @@ export async function runFileIntegrated(
         vscode.window.showErrorMessage(error);
         return false;
     }
+}
+
+export default async function runFile(uri: vscode.Uri): Promise<boolean> {
+    let terminalType = await getTerminalType();
+
+    if (terminalType === TerminalType.none) {
+        terminalType = await selectTerminal();
+    }
+
+    let result;
+    if (terminalType === TerminalType.integrated) {
+        let NEXT_TERM_ID = 1;
+        result = await runFileIntegrated(uri, NEXT_TERM_ID);
+    } else if (terminalType === TerminalType.putty) {
+        result = await runFilePutty(uri);
+    } else {
+        vscode.window.showErrorMessage(
+            "Make sure a default terminal is selected with the IMS: Choose Terminal command."
+        );
+        result = false;
+    }
+    
+    return result;
 }

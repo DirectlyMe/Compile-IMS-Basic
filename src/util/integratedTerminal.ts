@@ -3,7 +3,7 @@ import * as vscode from "vscode";
 export function getIntegratedTerminal(connection: IConnection, terminalId: number): vscode.Terminal | undefined {
     let terminal;
     if (connection.privateKeyPath) {
-        connection.privateKeyPath = connection.privateKeyPath.replace(/\\/g, "\\\\");
+        connection.privateKeyPath = connection.privateKeyPath.replace(/\\/g, "//");
         terminal = vscode.window.createTerminal(`Ext Terminal #${terminalId}`);
         terminal.show();
         terminal.sendText(
@@ -14,12 +14,12 @@ export function getIntegratedTerminal(connection: IConnection, terminalId: numbe
     } else if (!connection.privateKeyPath && connection.password) {
         terminal = vscode.window.createTerminal(`Ext Terminal #${terminalId}`);
         terminal.show();
-        terminal.sendText(`ssh  ${connection.username}@${connection.host}`);
+        terminal.sendText(`ssh ${connection.username}@${connection.host}`);
         terminal.sendText(connection.password);
     } else {
         terminal = vscode.window.createTerminal(`Ext Terminal #${terminalId}`);
         terminal.show();
-        terminal.sendText(`ssh  ${connection.username}@${connection.host}`);
+        terminal.sendText(`ssh ${connection.username}@${connection.host}`);
     }
 
     return terminal;

@@ -47,10 +47,10 @@ export async function compileFile(uri: vscode.Uri) : Promise<boolean>{
     var arrStdErr = stderr.split("\n");
     let compileError = false;
 
-    for (let i in arrStdErr) {
+    for (let i of arrStdErr) {
       if (
-        !arrStdErr[i].startsWith("Loading constants") &&
-        !arrStdErr[i].startsWith("Including")
+        !i.startsWith("Loading constants") &&
+        !i.startsWith("Including")
       ) {
         compileError = true;
       }
