@@ -9,6 +9,7 @@ export function getConnectionConfig(
 ): IConnection | undefined {
   try {
     const configuration = vscode.workspace.getConfiguration();
+
     const connections: IConnection[] | undefined = configuration.get(
       "sshfs.configs"
     );

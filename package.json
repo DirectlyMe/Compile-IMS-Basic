@@ -14,7 +14,8 @@
 		"onCommand:extension.compile",
 		"onCommand:extension.run",
 		"onCommand:extension.connect",
-		"onCommand:extension.compilerun"
+		"onCommand:extension.compilerun",
+		"onCommand:extension.selectTerminal"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -34,6 +35,10 @@
 			{
 				"command": "extension.compilerun",
 				"title": "IMS: Compile/Run"
+			},
+			{
+				"command": "extension.selectTerminal",
+				"title": "Choose Terminal Type"
 			}
 		],
 		"menus": {
@@ -51,6 +56,18 @@
 					"command": "extension.compilerun"
 				}
 			]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "IMS Configuration",
+			"properties": {
+				"ims.terminal-type": {
+					"title": "Preferred connection method integrated or putty",
+					"description": "Determines whether the user opens connection in the integrated terminal or in putty",
+					"type": "string",
+					"default": ""
+				}
+			}
 		}
 	},
 	"scripts": {
