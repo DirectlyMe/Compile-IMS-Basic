@@ -9,11 +9,13 @@ export function getConnectionConfig(
 ): IConnection | undefined {
     try {
         const configuration = vscode.workspace.getConfiguration();
+        const inspect = configuration.inspect<string[]>('sshfs.configs');
 
-        const connections: IConnection[] | undefined = configuration.get(
-            "sshfs.configs"
-        );
+        let connections: IConnection[];
+        // @ts-ignore
+        if (inspect) connections = inspect.globalValue;
 
+        // @ts-ignore
         if (connections) {
             const connection = connections.find(
                 connection => connection.name.toLowerCase() === connectionName
@@ -25,6 +27,8 @@ export function getConnectionConfig(
                 return undefined;
             }
         }
+
+        return undefined;
     } catch (error) {
         console.error(error);
     }

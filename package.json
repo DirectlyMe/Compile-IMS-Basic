@@ -4,6 +4,7 @@
 	"description": "Compiles IMS-Basic code over SSH",
 	"version": "1.0.5",
 	"publisher": "JJDakcs",
+	"repository": "https://github.com/DirectlyMe/Compile-IMS-Basic",
 	"engines": {
 		"vscode": "^1.33.0"
 	},
