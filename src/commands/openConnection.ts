@@ -5,7 +5,7 @@ import * as vscode from "vscode";
 import { getConnectionConfig } from "../util/connectionUtils";
 import { getIntegratedTerminal } from "../util/integratedTerminal";
 import { TerminalType } from "../types/enums";
-import { getTerminalType, selectTerminal } from "../util/selectTerminal";
+import { getTerminalType, selectTerminal } from "../util/terminalSelection";
 
 export async function openConnectionPutty(uri: vscode.Uri) {
     try {
@@ -66,7 +66,6 @@ export function openConnectionIntegrated(uri: vscode.Uri, terminalId: number) {
 
         // use _ for unused return variable
         const _ = getIntegratedTerminal(connection, terminalId);
-
     } catch (error) {
         vscode.window.showErrorMessage(error);
     }
@@ -86,7 +85,7 @@ export default async function openConnection(uri: vscode.Uri) {
         openConnectionPutty(uri);
     } else {
         vscode.window.showErrorMessage(
-            "Make sure a default terminal is selected with the IMS: Choose Terminal command."
+            'Make sure a terminal is selected with the "IMS: Choose Terminal Type" command.'
         );
     }
 }

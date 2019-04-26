@@ -4,7 +4,7 @@ import * as vscode from "vscode";
 import { compileFile } from "./commands/compileFile";
 import runFile from "./commands/runFile";
 import openConnection from "./commands/openConnection";
-import { selectTerminal } from "./util/selectTerminal";
+import { selectTerminal } from "./util/terminalSelection";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -43,7 +43,6 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(compile);
     context.subscriptions.push(run);
     context.subscriptions.push(connect);
-    context.subscriptions.push(compileRun);
     context.subscriptions.push(compileRun);
     context.subscriptions.push(terminal);
 }

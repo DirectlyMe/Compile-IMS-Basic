@@ -38,7 +38,7 @@
 			},
 			{
 				"command": "extension.selectTerminal",
-				"title": "Choose Terminal Type"
+				"title": "IMS: Choose Terminal Type"
 			}
 		],
 		"menus": {

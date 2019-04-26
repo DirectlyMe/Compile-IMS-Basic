@@ -5,15 +5,16 @@ import { getConnectionConfig } from "../util/connectionUtils";
 import { getFilePathing } from "../util/fileUtils";
 import { getIntegratedTerminal } from "../util/integratedTerminal";
 import { TerminalType } from "../types/enums";
-import { getTerminalType, selectTerminal } from "../util/selectTerminal";
-
+import { getTerminalType, selectTerminal } from "../util/terminalSelection";
 
 export async function runFilePutty(uri: vscode.Uri): Promise<boolean> {
     try {
         // Get ssh connection information
         const connection = getConnectionConfig(uri.authority);
         if (!connection) {
-            vscode.window.showErrorMessage(`Error loading connection for ${uri.authority}.`);
+            vscode.window.showErrorMessage(
+                `Error loading connection for ${uri.authority}.`
+            );
             return false;
         }
 
@@ -27,7 +28,10 @@ export async function runFilePutty(uri: vscode.Uri): Promise<boolean> {
         }
 
         // Build file of commands
-        const commandFile = openSync(`${process.env.APPDATA}\\puttycommands.txt`, "w");
+        const commandFile = openSync(
+            `${process.env.APPDATA}\\puttycommands.txt`,
+            "w"
+        );
         appendFileSync(commandFile, ". /etc/setdakcsenv" + "\n");
         appendFileSync(commandFile, `cd ${filePathInformation.workDir}` + "\n");
         appendFileSync(commandFile, `RUN ${filePathInformation.file}` + "\n");
@@ -38,12 +42,13 @@ export async function runFilePutty(uri: vscode.Uri): Promise<boolean> {
         let puttyString = "putty.exe ";
         if (connection.port) puttyString += `-p ${connection.port}`;
         puttyString += `${connection.username}@${connection.host} `;
-        if (connection.privateKeyPath) puttyString += `-i "${connection.privateKeyPath}" `;
+        if (connection.privateKeyPath)
+            puttyString += `-i "${connection.privateKeyPath}" `;
         else puttyString += `-pw ${connection.password} `;
         puttyString += `-m "${process.env.APPDATA}\\puttycommands.txt" `;
         puttyString += "-t";
 
-        shell.exec(puttyString, (code) => {
+        shell.exec(puttyString, code => {
             if (code !== 0) {
                 vscode.window.showErrorMessage(
                     "Error launching putty \n Connection String: " + puttyString
@@ -66,7 +71,9 @@ export async function runFileIntegrated(
         // Get ssh connection information
         const connection = getConnectionConfig(uri.authority);
         if (!connection) {
-            vscode.window.showErrorMessage(`Error loading connection for ${uri.authority}.`);
+            vscode.window.showErrorMessage(
+                `Error loading connection for ${uri.authority}.`
+            );
             return false;
         }
 
@@ -101,6 +108,13 @@ export async function runFileIntegrated(
 }
 
 export default async function runFile(uri: vscode.Uri): Promise<boolean> {
+    // get user confirmation on running the file
+    const selection = await vscode.window.showInformationMessage(
+        `Are you sure you want to run ${uri.path}?`,
+        ...["Yes", "No"]
+    );
+    if (selection !== "Yes") return false;
+
     let terminalType = await getTerminalType();
 
     if (terminalType === TerminalType.none) {
@@ -115,10 +129,10 @@ export default async function runFile(uri: vscode.Uri): Promise<boolean> {
         result = await runFilePutty(uri);
     } else {
         vscode.window.showErrorMessage(
-            "Make sure a default terminal is selected with the IMS: Choose Terminal command."
+            "Make sure a terminal is selected with the \"IMS: Choose Terminal Type\" command."
         );
         result = false;
     }
-    
+
     return result;
 }

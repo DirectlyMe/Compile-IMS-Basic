@@ -3,11 +3,11 @@ import * as vscode from "vscode";
 export function getIntegratedTerminal(connection: IConnection, terminalId: number): vscode.Terminal | undefined {
     let terminal;
     if (connection.privateKeyPath) {
-        connection.privateKeyPath = connection.privateKeyPath.replace(/\\/g, "//");
+        //connection.privateKeyPath = connection.privateKeyPath.replace(/\\/g, "/");
         terminal = vscode.window.createTerminal(`Ext Terminal #${terminalId}`);
         terminal.show();
         terminal.sendText(
-            `ssh -oIdentityFile=${connection.privateKeyPath} ${connection.username}@${
+            `ssh -oIdentityFile='${connection.privateKeyPath}' ${connection.username}@${
                 connection.host
             }`
         );
