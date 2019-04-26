@@ -8,12 +8,13 @@ export function getConnectionConfig(
     connectionName: string
 ): IConnection | undefined {
     try {
-        const configuration = vscode.workspace.getConfiguration();
-        const inspect = configuration.inspect<string[]>('sshfs.configs');
+        const configuration = vscode.workspace
+            .getConfiguration()
+            .inspect<string[]>("sshfs.configs");
 
         let connections: IConnection[];
         // @ts-ignore
-        if (inspect) connections = inspect.globalValue;
+        if (configuration) connections = configuration.globalValue;
 
         // @ts-ignore
         if (connections) {
