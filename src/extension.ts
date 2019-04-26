@@ -35,7 +35,7 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     );
 
-    const terminal = vscode.commands.registerCommand(
+    const terminalSelection = vscode.commands.registerCommand(
         "extension.selectTerminal",
         () => selectTerminal()
     );
@@ -44,7 +44,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(run);
     context.subscriptions.push(connect);
     context.subscriptions.push(compileRun);
-    context.subscriptions.push(terminal);
+    context.subscriptions.push(terminalSelection);
 }
 
 // this method is called when your extension is deactivated

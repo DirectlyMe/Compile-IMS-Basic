@@ -3,7 +3,7 @@ import { TerminalType } from "../types/enums";
 
 export async function selectTerminal(): Promise<TerminalType> {
     const selection = await vscode.window.showQuickPick(
-        ["Integrated", "Putty (Recommended)"],
+        ["Putty (Recommended)", "Integrated"],
         {
             placeHolder: "Select your default terminal"
         }

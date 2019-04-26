@@ -71,6 +71,8 @@ export function openConnectionIntegrated(uri: vscode.Uri, terminalId: number) {
     }
 }
 
+
+// determine which terminal the user selected
 export default async function openConnection(uri: vscode.Uri) {
     let terminalType = await getTerminalType();
 
@@ -79,8 +81,8 @@ export default async function openConnection(uri: vscode.Uri) {
     }
 
     if (terminalType === TerminalType.integrated) {
-        let NEXT_TERM_ID = 1;
-        openConnectionIntegrated(uri, NEXT_TERM_ID);
+        let terminalId = Math.floor(Math.random() * 100);
+        openConnectionIntegrated(uri, terminalId);
     } else if (terminalType === TerminalType.putty) {
         openConnectionPutty(uri);
     } else {
