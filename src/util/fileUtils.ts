@@ -8,8 +8,9 @@ export function getFilePathing(
         rootDir: ""
     };
 
+    const fullpathname = connection.root + pathname;
     // Check for a src folder in the file path selected
-    const srcPos = pathname.lastIndexOf("/src");
+    const srcPos = fullpathname.lastIndexOf("/src/");
 
     // Check if there is a root directory
     pathInformation.rootDir =
@@ -28,11 +29,10 @@ export function getFilePathing(
         );
     } else {
         // Get the working directory for the compiler
-        pathInformation.workDir =
-            pathInformation.rootDir + pathname.substring(0, srcPos);
+        pathInformation.workDir = fullpathname.substring(0, srcPos);
 
         // Get the file name
-        pathInformation.file = pathname.substring(srcPos + 5, pathname.length);
+        pathInformation.file = fullpathname.substring(srcPos + 5, fullpathname.length);
     }
 
     return pathInformation;
