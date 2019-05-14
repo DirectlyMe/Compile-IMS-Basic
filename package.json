@@ -2,7 +2,7 @@
 	"name": "compile-ims-basic",
 	"displayName": "Compile IMS-Basic",
 	"description": "Compiles IMS-Basic code over SSH",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"publisher": "JJDakcs",
 	"engines": {
 		"vscode": "^1.33.0"
